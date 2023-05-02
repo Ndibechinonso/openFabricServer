@@ -21,8 +21,8 @@ const addProduct = (req, res, next) => {
     // .catch((err) => console.log(err, 'err'))
 }
 
-const getAllProducts = async (req, res, next)=>{
- Product.find({}, (err, product) =>{
+const getAllProducts = (req, res, next)=>{
+  Product.find({}, (err, product) =>{
     if(err){
         console.log(err);
         res.status(500).send({success: false, msg: "Error Fetching Products, please try again."})  
