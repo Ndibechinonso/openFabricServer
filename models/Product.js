@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ProductSchema = mongoose.Schema({
     name: {type: String, required: true},
-    description: [{type: mongoose.SchemaTypes.Mixed, required: true}],
+    description: [{type: mongoose.SchemaTypes.Mixed}],
     price: {type: Number, required: true},
     img_link: {type: String, required: true},
     weight: {type: Number, required: true},

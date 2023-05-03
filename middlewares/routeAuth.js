@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const withAuth = function(req, res, next) {
   let bearer = JSON.stringify(req.headers.authorization.split(" ")[0])
   let token = JSON.stringify(req.headers.authorization.split(" ")[1])
-console.log(token.replace(/"|'/g, ''));
   if(!bearer || !token){
     res.status(401).send('Unauthorized');
   }

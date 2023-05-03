@@ -11,7 +11,6 @@ const UserSchema = mongoose.Schema({
 
 UserSchema.pre('save', function(next){
     if(this.isNew || this.isModified('password')){
-        console.log(this, "this");
         document = this;
         bcrypt.hash(document.password, saltRounds, (err, hashedPassword) =>{
             if(err){
@@ -28,10 +27,8 @@ UserSchema.pre('save', function(next){
 })
 
 UserSchema.methods.isCorrectPassword = function (password, callback){
-    console.log(password, this, "hh");
     bcrypt.compare(password, this.password, (err, same) => {
         if(err){
-            // console.log(err, "password");
             callback(err)
         }else{
             callback(err, same)
@@ -39,14 +36,5 @@ UserSchema.methods.isCorrectPassword = function (password, callback){
     })
 }
 
-// UserSchema.methods.isCorrectPassword = function(password, callback) {
-//     bcrypt.compare(password, this.password, function(err, same) {
-//       if (err) {
-//         callback(err);
-//       } else {
-//         callback(err, same);
-//       }
-//     });
-//   }
 
 module.exports = mongoose.model('User', UserSchema);
