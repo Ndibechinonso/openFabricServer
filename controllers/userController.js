@@ -35,12 +35,12 @@ const authenticateUser = (req, res, next) => {
             console.error(err);
             res.status(500)
                 .json({
-                    error: 'Internal error finding email please try again'
+                    success: false, message: 'Internal error finding email please try again'
                 });
         } else if (!user) {
-            res.status(401)
+            res.status(400)
                 .json({
-                    error: 'Incorrect email or password'
+                    success: false, message: 'Incorrect email or password'
                 });
         } else {
             user.isCorrectPassword(password, (err, same) => {
@@ -48,12 +48,12 @@ const authenticateUser = (req, res, next) => {
                     console.log(err, "password");
                     res.status(500)
                         .json({
-                            error: 'Internal error please try again'
+                            success: false, message: 'Internal error please try again'
                         });
                 } else if (!same) {
-                    res.status(401)
+                    res.status(400)
                         .json({
-                            error: 'Incorrect email or password'
+                            success: false, message: 'Incorrect email or password'
                         });
                 } else {
                     // Issue token
